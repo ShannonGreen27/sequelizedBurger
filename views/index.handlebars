@@ -1,45 +1,55 @@
-<img id="burger" src="../assets/img/Burger.jpg" alt="Burger">
+<img id="burger" src="../assets/img/burger.jpg" alt="Burger">
 
 <h1>EAT-DA-BURGER!</h1>
-
-<ol>
-  {{#each burgers}}
-    {{#unless this.devoured}}
-      <li>
-          <div class="notDevouredGroup">       
-            <div class="notDevoured">
-              {{this.burger_name}}
-            
-              <div class="devourBtn">
+<div id="content">  
+  <div id="plate">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Plate</h3>
+      </div>
+      <div class="panel-body">
+        {{#each burgers}}
+          {{#unless this.devoured}}
+            <div class="notDevouredGroup">       
+              <div class="notDevoured">
+                  {{this.burger_name}}
+              </div>    
+              <div>
                 <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
-
                   <input type="hidden" name="devoured" value="true">
-                  <button type="submit">Devour it!</button>
-
+                  <button type="submit" class="btn btn-danger devourBtn">Devour it!</button>
                 </form>
               </div>
             </div>
-          </div>
-      </li>
-    {{/unless}}
-  {{/each}}
+          {{/unless}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
+  <div id="waiter">
+    <h2 class="waiterText">Give the waiter your order</h2>
+    <form class="create-update-form" action="burgers/create" method="POST">
 
-  {{#each burgers}}
-    {{#if this.devoured}}
-      <li>
-        <div class="devoured">
-          {{this.burger_name}}
-        </div>
-      </li>
-    {{/if}}
-  {{/each}}
-</ol>
+        <input type="text" id="id" name="burger_name">
+        <br><button type="submit" class="btn btn-primary placeOrder">Place Order</button>
+        <p>Enter a burger you want to eat and click the "submit" button.</p>
 
-<h2>BURGER?</h2>
-<form class="create-update-form" action="burgers/create" method="POST">
-
-    <input type="text" id="id" name="burger_name">
-    <br><button type="submit">Submit</button>
-    <p>Enter a burger you want to eat and click the "submit" button.</p>
-
-</form>
+    </form>
+  </div>  
+  <div id="stomach">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Stomach</h3>
+      </div>
+      <div class="panel-body">
+        {{#each burgers}}
+          {{#if this.devoured}}
+              <div class="devoured">
+                {{this.burger_name}}
+              </div>
+          {{/if}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</div>
