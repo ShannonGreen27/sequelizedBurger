@@ -58,6 +58,10 @@ h1, h2, .placeOrder, input, #burgerImg {
 	left: 3%;
 }
 
+#devouredText {
+	padding-bottom: 0px;
+}
+
 #stomach {
 
 	right: 3%;
