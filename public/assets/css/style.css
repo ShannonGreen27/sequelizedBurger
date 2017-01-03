@@ -3,26 +3,39 @@ html, body {
 	height: 100%;
 }
 
-#burger {
+#burgerImg {
     width: 20%;
 	padding-top: 50px;    
 }
 
+#customerName {
+	position: absolute;
+	width: 75px;
+	right: 65px;
+	top: 0px;
+}
+
 .devourBtn {
 	padding: 0px;
-	float: right;
+	position: absolute;
+	right: 0px;
+	top: 2px;
 }
 
 .notDevoured {
 	width: auto;
-	float: left;
+}
+
+.notDevouredGroup {
+	position: relative;
+	padding-bottom: 10px;
 }
 
 #content {
 	padding-top: 50px;
 }
 
-h1, h2, .placeOrder, input, #burger {
+h1, h2, .placeOrder, input, #burgerImg {
 	margin: auto;
     height: auto;
     display: block;
@@ -38,16 +51,16 @@ h1, h2, .placeOrder, input, #burger {
 }
 
 #stomach, #plate {
-	width: 23%;
+	width: 30%;
 }
 
 #plate {
-	left: 10%;
+	left: 3%;
 }
 
 #stomach {
 
-	right: 10%;
+	right: 3%;
 }
 
 .waiterText {

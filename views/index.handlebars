@@ -1,4 +1,4 @@
-<img id="burger" src="../assets/img/burger.jpg" alt="Burger">
+<img id="burgerImg" src="../assets/img/burger.jpg" alt="Burger">
 
 <h1>EAT-DA-BURGER!</h1>
 <div id="content">  
@@ -17,6 +17,7 @@
               <div>
                 <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
                   <input type="hidden" name="devoured" value="true">
+                  <input id="customerName" type="text" placeholder="Customer?" name="name">
                   <button type="submit" class="btn btn-danger devourBtn">Devour it!</button>
                 </form>
               </div>
@@ -45,7 +46,8 @@
         {{#each burgers}}
           {{#if this.devoured}}
               <div class="devoured">
-                {{this.burger_name}}
+                <p>{{this.burger_name}} eaten by {{User.name}}</p>
+                </div>
               </div>
           {{/if}}
         {{/each}}

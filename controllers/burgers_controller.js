@@ -1,17 +1,13 @@
 /*
 Here is where you create all the functions that will do the routing for your app, and the logic of each route.
 */
+var models = require('../models');
 var express = require('express');
 var router = express.Router();
-var models = require('../models');
 
 router.get('/', function (req, res) {
-	res.redirect('/burgers');
-});
-
-router.get('/burgers', function (req, res) {
 	models.Burger.findAll({
-
+		include: [models.User]
 	})
 	.then(function (burgers) {
 		res.render('index', {
@@ -20,7 +16,7 @@ router.get('/burgers', function (req, res) {
 	});
 });
 
-router.post('/burgers/create', function (req, res) {
+router.post('/create', function (req, res) {
 	models.Burger.create({
 		burger_name: req.body.burger_name, 
 		devoured: req.body.devoured
@@ -30,18 +26,30 @@ router.post('/burgers/create', function (req, res) {
 	});
 });
 
-router.put('/burgers/update/:id', function (req, res) {
-
-	models.Burger.update({
-		devoured: req.body.devoured
-	},
-	{
-		where: { 
-			id: req.params.id
-		}
+router.put('/update/:id', function (req, res) {
+	models.User.create({
+		name: req.body.name
 	})
-	.then(function(result) {
-		res.redirect('/burgers');
+	.then(function(createResult) {
+		models.User.findAll({
+			where: {
+				name: req.body.name
+			}
+		})
+		.then(function(nameResult) {
+			models.Burger.update({
+			devoured: req.body.devoured,
+			user_id: nameResult[nameResult.length - 1].id
+			},
+			{
+			where: { 
+				id: req.params.id
+			}
+			})
+			.then(function(result) {
+				res.redirect('/burgers');
+			});
+		});
 	});
 });
 
